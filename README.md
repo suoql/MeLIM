@@ -19,16 +19,16 @@ This package has the following requirements:
 ## Usage
 
 ### Prepare data
-We use [ANDI](https://ida.loni.usc.edu/login.jsp?project=ADNI&page=HOME) image dataset in our paper. There are two modalities in total: MRI and PET The data is preprocessed and saved in h5 format. We use 2D images with size 32x32. There are two types of training data: train_pair (modality-complete) and train_unpair (with missing modality). The paried data file contains three keys ('label', 'mri', 'pet'), and unpaired data file contains four keys ('mri', 'pet', 'mri_label', 'pet_label').
+We use [ANDI](https://ida.loni.usc.edu/login.jsp?project=ADNI&page=HOME) image dataset in our paper. There are two modalities in the dataset: MRI and PET. The data is preprocessed and saved in h5 format. We use 2D images with size 32x32. There are two types of training data: train_pair (modality-complete) and train_unpair (with missing modality). The paried data file contains three keys ('label', 'mri', 'pet'), and unpaired data file contains four keys ('mri', 'pet', 'mri_label', 'pet_label').
 
 ### Configurations
-Network hyperparameters are configured in main.py. We use the default hyperparameters of network structure in our experiments. There are some configurations of experimental settings:
+Network hyperparameters are configured in main.py. We use the default hyperparameters of network structure in our experiments. There are some configurations of experiment settings:
 
 --classes: the classes of binary classification: distinguishing CN_AD, or MCI_AD.
 
 --portion: number of paired (complete) data samples in training. We change it to investigate model performance regarding the ratio of paired and unpaired data.
 
---suffix: file name, to keep track of each experiments.
+--suffix: file name, to keep track of different experiments.
 
 
 ### Run proposed method
