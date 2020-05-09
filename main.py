@@ -2,9 +2,6 @@ import os
 import time
 import argparse
 import tensorflow as tf
-from models.metric_network import MetricLearn
-from models.network_paired import Generator_paired
-from models.GAN_unpaired import GAN_unpaired
 from models.proposed import proposed_model
 
 
@@ -29,7 +26,7 @@ def main(_):
     parser.add_argument('--learning_rate', type=int, default=2e-4, help = 'learning rate')
     parser.add_argument('--train_pair', type=str, default='adni_paired_train.h5', help = 'Training data')
     parser.add_argument('--train_unpair', type=str, default='adni_unpaired.h5', help = 'Training data')
-    parser.add_argument('--valid_data', type=str, default='adni_paired_test.h5', help = 'Validation data')
+    parser.add_argument('--valid_data', type=str, default='adni_paired_valid.h5', help = 'Validation data')
     parser.add_argument('--test_data', type=str, default='adni_paired_test.h5', help = 'Testing data')
     parser.add_argument('--trial', type=int, default=1, help = 'number of training trials, we repeat training for 5 times and report the mean')
     
@@ -84,16 +81,7 @@ def main(_):
         print('invalid option: ', args.option)
         print("Please input a option: train, test")
     else:
-        if args.model == 'metric':
-            print ('start metric learning')
-            model = MetricLearn(sess, args)
-        elif args.model == 'GAN_paired':
-            print('start paired GAN')
-            model = Generator_paired(sess, args)
-        elif args.model == 'GAN_unpaired':
-            print('start GAN_unpaired learning')
-            model = GAN_unpaired(sess, args)
-        elif args.model == 'proposed':
+        if args.model == 'proposed':
             print('start GAN paired_unpaired metric learning')
             model = proposed_model(sess, args)
 
