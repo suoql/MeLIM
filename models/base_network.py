@@ -81,8 +81,8 @@ class base_model(object):
         trainable_vars = tf.trainable_variables()
         self.g_vars = [var for var in trainable_vars if var.name.startswith('g')]
         self.d_vars = [var for var in trainable_vars if var.name.startswith('d')]
-        self.g_train = tf.train.AdamOptimizer(1e-3, beta1 = 0.5, beta2 =0.999).minimize(self.g_loss_total, var_list = self.g_vars)  ##1e-3 for p100_up, 1e-4 for p_up
-        self.d_train = tf.train.AdamOptimizer(2e-4, beta1 = 0.5, beta2 =0.999).minimize(self.d_loss_total, var_list = self.d_vars)  ##train d for k steps??
+        self.g_train = tf.train.AdamOptimizer(1e-3, beta1 = 0.5, beta2 =0.999).minimize(self.g_loss_total, var_list = self.g_vars)
+        self.d_train = tf.train.AdamOptimizer(2e-4, beta1 = 0.5, beta2 =0.999).minimize(self.d_loss_total, var_list = self.d_vars) 
         tf.set_random_seed(self.conf.random_seed)
         self.sess.run(tf.global_variables_initializer()) 
         self.saver = tf.train.Saver(var_list=trainable_vars, max_to_keep=3)
